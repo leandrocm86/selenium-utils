@@ -1,4 +1,4 @@
-package l86.selenium.utils;
+package l86.utils.selenium;
 
 import java.util.List;
 import java.util.Set;
