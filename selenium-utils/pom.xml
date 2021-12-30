@@ -3,6 +3,34 @@
   <groupId>selenium-utils</groupId>
   <artifactId>selenium-utils</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <repositories>
+        <repository>
+          <id>central</id>
+          <url>https://repo1.maven.org/maven2</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+          <id>github</id>
+          <name>GitHub OWNER Apache Maven Packages</name>
+          <url>https://maven.pkg.github.com/leandrocm86/java-utils</url>
+		  <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+  </repositories>
+  <dependencies>
+  	<dependency>
+  		<groupId>l86.utils</groupId>
+  		<artifactId>utils</artifactId>
+  		<version>1.41</version>
+  	</dependency>
+  	<dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>4.0.0-alpha-5</version>
+        <!-- <version>3.141.59</version> -->
+    </dependency>
+  </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
