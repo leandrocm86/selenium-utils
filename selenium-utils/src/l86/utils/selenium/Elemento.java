@@ -11,7 +11,6 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import estruturas.Lista;
-import io.Log;
 import utils.Str;
 
 public class Elemento implements WebElement {
@@ -50,7 +49,6 @@ public class Elemento implements WebElement {
 			filho = element.findElement(By.cssSelector(selector));
 		}
 		catch(Exception e) {
-			Log.msgLn("Elemento não encontrado para selector " + selector);
 			return null;
 		}
 		return new Elemento(filho);
