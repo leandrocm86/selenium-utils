@@ -22,7 +22,7 @@
   	<dependency>
   		<groupId>l86.utils</groupId>
   		<artifactId>utils</artifactId>
-  		<version>1.41</version>
+  		<version>1.43</version>
   	</dependency>
   	<dependency>
         <groupId>org.seleniumhq.selenium</groupId>
