@@ -54,6 +54,10 @@ public class Elemento implements WebElement {
 		return new Elemento(filho);
 	}
 	
+	public Lista<Elemento> filhosByText(CharSequence text) {
+		return elementos(element.findElements(By.xpath("//*[contains(text(), '" + text + "')]")));
+	}
+	
 	public Str texto() {
 		try {
 			return new Str(this.element.getAttribute("innerHTML"));

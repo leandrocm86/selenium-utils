@@ -154,6 +154,10 @@ public class Driver implements WebDriver {
 		return new Elemento(webDriver.findElement(By.cssSelector(selector)));
 	}
 	
+	public Lista<Elemento> allByText(CharSequence text) {
+		return Elemento.elementos(webDriver.findElements(By.xpath("//*[contains(text(), '" + text + "')]")));
+	}
+	
 	public Lista<Elemento> allBySelector(String selector) {
 		return Elemento.elementos(webDriver.findElements(By.cssSelector(selector)));
 	}
