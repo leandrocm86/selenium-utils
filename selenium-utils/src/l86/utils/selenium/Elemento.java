@@ -35,14 +35,37 @@ public class Elemento implements WebElement {
 		WebElement parent = (WebElement) ((JavascriptExecutor) driver).executeScript("return arguments[0].parentNode;", myElement)*/
 	}
 	
+	/**
+	 * Busca todos os filhos do elemento.
+	 */
 	public Lista<Elemento> filhos() {
 		return elementos(element.findElements(By.xpath(".//*")));
 	}
 	
+	/**
+	 * Busca os filhos (descendentes diretos) do elemento que casem com um dado seletor.
+	 */
 	public Lista<Elemento> filhosBySelector(String selector) {
 		return elementos(element.findElements(By.cssSelector(selector)));
 	}
 	
+	/**
+	 * Busca todos os descendentes do elemento que casem com um dado seletor.
+	 */
+	public Lista<Elemento> descendentesBySelector(String selector) {
+		Lista<Elemento> descendentes = new Lista<Elemento>();
+		descendentes.addAll(filhosBySelector(selector));
+		Lista<Elemento> filhos = filhos();
+		for (Elemento filho : filhos) {
+			descendentes.addAll(filho.descendentesBySelector(selector));
+		}
+		return descendentes;
+	}
+	
+	/**
+	 * Busca o filho (descendente direto) que case com dado seletor.
+	 * Se houver mais de um, retorna o primeiro. Se não houver nenhum, retorna nulo.
+	 */
 	public Elemento filhoBySelector(String selector) {
 		WebElement filho = null;
 		try {
@@ -54,6 +77,9 @@ public class Elemento implements WebElement {
 		return new Elemento(filho);
 	}
 	
+	/**
+	 * Busca os filhos (descendentes diretos) que contenham um dado texto.
+	 */
 	public Lista<Elemento> filhosByText(CharSequence text) {
 		return elementos(element.findElements(By.xpath("//*[contains(text(), '" + text + "')]")));
 	}
