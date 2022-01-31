@@ -93,6 +93,19 @@ public class Elemento implements WebElement {
 		}
 	}
 	
+	public Str textoSemTags() {
+		Str texto = texto();
+		while (true) {
+			int inicioTag = texto.indexOf("<");
+			int fimTag = texto.indexOf(">");
+			if (inicioTag == -1 || fimTag == -1)
+				break;
+			fimTag += 1;
+			texto.val(texto.substring(0, inicioTag) + (fimTag < texto.length() ? texto.substring(fimTag) : ""));
+		}
+		return texto;
+	}
+	
 	public Str atributo(String atributo) {
 		return new Str(this.element.getAttribute(atributo));
 	}
