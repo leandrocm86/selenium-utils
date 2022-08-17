@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>l86.utils.selenium</groupId>
   <artifactId>selenium-utils</artifactId>
-  <version>1.8</version>
+  <version>1.7</version>
   <repositories>
         <repository>
           <id>central</id>
@@ -22,7 +22,7 @@
   	<dependency>
   		<groupId>l86.utils</groupId>
   		<artifactId>utils</artifactId>
-  		<version>1.51</version>
+  		<version>1.49</version>
   	</dependency>
   	<dependency>
         <groupId>org.seleniumhq.selenium</groupId>

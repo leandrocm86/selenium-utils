@@ -158,13 +158,6 @@ public class Driver implements WebDriver {
 		return Elemento.elementos(webDriver.findElements(By.xpath("//*[contains(text(), '" + text + "')]")));
 	}
 	
-	public Elemento byText(CharSequence text) {
-		Lista<Elemento> encontrados = allByText(text);
-		if (encontrados.size() > 1)
-			throw new IllegalStateException("Encontrados " + encontrados.size() + " resultados para texto '" + text + "'");
-		return encontrados.get(0);
-	}
-	
 	public Lista<Elemento> allBySelector(String selector) {
 		return Elemento.elementos(webDriver.findElements(By.cssSelector(selector)));
 	}
