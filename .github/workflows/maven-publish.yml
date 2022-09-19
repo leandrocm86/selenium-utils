@@ -38,6 +38,15 @@ jobs:
       run: mvn -B package --file selenium-utils/pom.xml -s /home/runner/.m2/settings.xml
       env:
         GITHUB_TOKEN: ${{ github.token }}
+        
+    - name: Create release
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: false
+        files: |
+          selenium-utils/target/*.jar
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy --file selenium-utils/pom.xml -s /home/runner/.m2/settings.xml
