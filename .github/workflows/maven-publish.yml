@@ -41,7 +41,7 @@ jobs:
         automatic_release_tag: "latest"
         prerelease: false
         files: |
-          target/*.jar
+          selenium-utils/target/*.jar
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy --file selenium-utils/pom.xml -s /home/runner/.m2/settings.xml
