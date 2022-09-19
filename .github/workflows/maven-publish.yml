@@ -45,8 +45,6 @@ jobs:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "latest"
         prerelease: false
-        files: |
-          target/*.jar
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy --file selenium-utils/pom.xml -s /home/runner/.m2/settings.xml
