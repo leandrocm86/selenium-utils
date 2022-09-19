@@ -10,9 +10,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import estruturas.Lista;
-import io.Log;
-
 public class Driver implements WebDriver {
 	
 	public final static String DRIVER_URL = "/usr/bin/chromedriver"; // apt-install chromium-chromedriver
@@ -22,13 +19,7 @@ public class Driver implements WebDriver {
 //	private Integer janelasAbertas = 0;
 	
 	public Driver() {
-		try {
-			this.iniciaNovoWebDriver();
-		}
-		catch(Throwable t) {
-			Log.logaErro(t);
-			throw t;
-		}
+		this.iniciaNovoWebDriver();
 	}
 	
 	private void iniciaNovoWebDriver() {
@@ -46,7 +37,7 @@ public class Driver implements WebDriver {
 		try {
 			webDriver.get(url);
 		} catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.remote.UnreachableBrowserException e) {
-			Log.msgLn("Timeout para carregar a pagina!");
+			throw new IllegalStateException("Timeout para carregar a pagina!");
 //			try {
 //				Thread.sleep(30000);
 //			} catch (InterruptedException e1) {
@@ -154,15 +145,15 @@ public class Driver implements WebDriver {
 		return new Elemento(webDriver.findElement(By.cssSelector(selector)));
 	}
 	
-	public Lista<Elemento> allByText(CharSequence text) {
+	public List<Elemento> allByText(CharSequence text) {
 		return Elemento.elementos(webDriver.findElements(By.xpath("//*[contains(text(), '" + text + "')]")));
 	}
 	
-	public Lista<Elemento> allBySelector(String selector) {
+	public List<Elemento> allBySelector(String selector) {
 		return Elemento.elementos(webDriver.findElements(By.cssSelector(selector)));
 	}
 	
-	public Lista<Elemento> allByTag(String tag) {
+	public List<Elemento> allByTag(String tag) {
 		return Elemento.elementos(webDriver.findElements(By.tagName(tag)));
 	}
 

@@ -1,5 +1,6 @@
 package l86.utils.selenium;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -10,15 +11,12 @@ import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
-import estruturas.Lista;
-import utils.Str;
-
 public class Elemento implements WebElement {
 	
 	private WebElement element;
 	
-	public static Lista<Elemento> elementos(List<WebElement> webElements) {
-		Lista<Elemento> retorno = new Lista<Elemento>();
+	public static List<Elemento> elementos(List<WebElement> webElements) {
+		List<Elemento> retorno = new ArrayList<Elemento>();
 		for (WebElement element : webElements)
 			retorno.add(new Elemento(element));
 		return retorno;
@@ -38,24 +36,24 @@ public class Elemento implements WebElement {
 	/**
 	 * Busca todos os filhos do elemento.
 	 */
-	public Lista<Elemento> filhos() {
+	public List<Elemento> filhos() {
 		return elementos(element.findElements(By.xpath(".//*")));
 	}
 	
 	/**
 	 * Busca os filhos (descendentes diretos) do elemento que casem com um dado seletor.
 	 */
-	public Lista<Elemento> filhosBySelector(String selector) {
+	public List<Elemento> filhosBySelector(String selector) {
 		return elementos(element.findElements(By.cssSelector(selector)));
 	}
 	
 	/**
 	 * Busca todos os descendentes do elemento que casem com um dado seletor.
 	 */
-	public Lista<Elemento> descendentesBySelector(String selector) {
-		Lista<Elemento> descendentes = new Lista<Elemento>();
+	public List<Elemento> descendentesBySelector(String selector) {
+		List<Elemento> descendentes = new ArrayList<Elemento>();
 		descendentes.addAll(filhosBySelector(selector));
-		Lista<Elemento> filhos = filhos();
+		List<Elemento> filhos = filhos();
 		for (Elemento filho : filhos) {
 			descendentes.addAll(filho.descendentesBySelector(selector));
 		}
@@ -80,34 +78,34 @@ public class Elemento implements WebElement {
 	/**
 	 * Busca os filhos (descendentes diretos) que contenham um dado texto.
 	 */
-	public Lista<Elemento> filhosByText(CharSequence text) {
+	public List<Elemento> filhosByText(CharSequence text) {
 		return elementos(element.findElements(By.xpath("//*[contains(text(), '" + text + "')]")));
 	}
 	
-	public Str texto() {
+	public String texto() {
 		try {
-			return new Str(this.element.getAttribute("innerHTML"));
+			return this.element.getAttribute("innerHTML");
 		}
 		catch(Throwable t) {
-			return new Str();
+			return "";
 		}
 	}
 	
-	public Str textoSemTags() {
-		Str texto = texto();
+	public String textoSemTags() {
+		String texto = texto();
 		while (true) {
 			int inicioTag = texto.indexOf("<");
 			int fimTag = texto.indexOf(">");
 			if (inicioTag == -1 || fimTag == -1)
 				break;
 			fimTag += 1;
-			texto.val(texto.substring(0, inicioTag) + (fimTag < texto.length() ? texto.substring(fimTag) : ""));
+			texto = texto.substring(0, inicioTag) + (fimTag < texto.length() ? texto.substring(fimTag) : "");
 		}
 		return texto;
 	}
 	
-	public Str atributo(String atributo) {
-		return new Str(this.element.getAttribute(atributo));
+	public String atributo(String atributo) {
+		return this.element.getAttribute(atributo);
 	}
 	
 	

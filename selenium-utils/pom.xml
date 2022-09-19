@@ -2,19 +2,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>l86.utils.selenium</groupId>
   <artifactId>selenium-utils</artifactId>
-  <version>1.7</version>
-  <repositories>
-     <repository>
-  	    <id>jitpack.io</id>
-		<url>https://jitpack.io</url>
-     </repository>
-  </repositories>
+  <version>2.0</version>
   <dependencies>
-  	<dependency>
-  		<groupId>com.github.leandrocm86</groupId>
-		<artifactId>java-utils</artifactId>
-		<version>latest</version>
-  	</dependency>
   	<dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-java</artifactId>
